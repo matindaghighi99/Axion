@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AXION — Automation, Engineered.</title>
+  <meta name="description" content="AXION builds intelligent automation systems that scale your operations, eliminate busywork, and let your team focus on what matters." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Onest:wght@300..800&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b0b0c'/%3E%3Crect x='9' y='9' width='14' height='14' rx='2' transform='rotate(45 16 16)' fill='%23ff4d2e'/%3E%3C/svg%3E" />
+  <!-- Warm the HTTP cache for the hero video as early as possible so it lands
+       fully buffered by the time the scrub engine boots. `as=fetch` is the
+       only `<link rel=preload>` form Chrome will honour for an MP4. -->
+  <link rel="preload" as="fetch" href="videos/robot.mp4" type="video/mp4" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/styles.css?v=20260621a" />
+</head>
+<body>
+  <!-- Skip link for keyboard / screen-reader users -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- Page-load overlay -->
+  <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Loading AXION">
+    <div class="loader-inner">
+      <div class="loader-logo">AXION</div>
+      <div class="loader-bar" role="progressbar" aria-label="Page load progress"><span></span></div>
+      <div class="loader-status" aria-hidden="true">Initializing systems<em>.</em><em>.</em><em>.</em></div>
+    </div>
+  </div>
+
+  <!-- Floating background grid + soft top sheen + magazine spine -->
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="gloss" aria-hidden="true"></div>
+  <div class="spine" aria-hidden="true">AXION · vol.01 · 2026 · automation engineered</div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo" data-cursor="grow">
+        <span class="logo-mark"></span>
+        <span class="logo-text">AXION</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#" class="nav-link active" data-cursor="grow">Home</a>
+        <a href="services.html" class="nav-link" data-cursor="grow">Services</a>
+        <a href="work.html" class="nav-link" data-cursor="grow">Work</a>
+        <a href="about.html" class="nav-link" data-cursor="grow">About</a>
+        <a href="contact.html" class="nav-link" data-cursor="grow">Contact</a>
+      </nav>
+      <a href="contact.html" class="btn btn-primary nav-cta" data-magnetic data-cursor="grow">
+        <span>Book a call</span>
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+      <button class="nav-burger" id="navBurger" type="button"
+              aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu (hamburger overlay, visible only on small screens) -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site navigation" hidden>
+    <div class="mobile-menu-scrim" data-menu-close></div>
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-head">
+        <a href="#" class="logo">
+          <span class="logo-mark"></span>
+          <span class="logo-text">AXION</span>
+        </a>
+        <button class="mobile-menu-close" type="button" aria-label="Close menu" data-menu-close>
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <nav class="mobile-menu-links" aria-label="Primary">
+        <a href="#" class="mobile-link is-current"><span class="mobile-link-num">01</span><span>Home</span></a>
+        <a href="services.html" class="mobile-link"><span class="mobile-link-num">02</span><span>Services</span></a>
+        <a href="work.html" class="mobile-link"><span class="mobile-link-num">03</span><span>Work</span></a>
+        <a href="about.html" class="mobile-link"><span class="mobile-link-num">04</span><span>About</span></a>
+        <a href="contact.html" class="mobile-link"><span class="mobile-link-num">05</span><span>Contact</span></a>
+      </nav>
+      <div class="mobile-menu-foot">
+        <a href="contact.html" class="btn btn-primary btn-lg mobile-menu-cta">
+          <span>Book a call</span>
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+        <p class="mobile-menu-meta">hello@axion.ai &middot; San Francisco / Amsterdam</p>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+
+  <!-- HERO (scroll-pinned: 6 narrative scrolls + AXION splash overlay at top) -->
+  <section class="hero-pin" id="heroPin">
+    <div class="hero hero-sticky">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span id="beatLabel">00 / 06 — scroll to begin</span>
+          </div>
+
+          <!-- 7 frames: beat 0 = AXION splash (centered overlay at scrollY=0);
+               beats 1–6 = one narrative per scroll. Each scroll maps to a
+               specific video time range — see CHAPTERS in js/main.js. -->
+          <div class="hero-stack" id="heroStack">
+            <article class="hero-frame is-active hero-frame--splash" data-beat="0">
+              <h1 class="hero-title splash-title"><span>AXION</span></h1>
+              <p class="hero-sub splash-sub">Where intelligence meets the <em>wild</em>.</p>
+            </article>
+            <article class="hero-frame" data-beat="1">
+              <h2 class="hero-title"><span>Automation,</span><span>shaped by</span><span><em>nature</em>.</span></h2>
+              <p class="hero-sub">We engineer AI systems modeled on what builds every working ecosystem on Earth — agents, instincts, and flows that adapt the way living systems do.</p>
+            </article>
+            <article class="hero-frame" data-beat="2">
+              <h2 class="hero-title"><span>Agents that</span><span><em>hunt</em> while</span><span>you sleep.</span></h2>
+              <p class="hero-sub">Custom-trained AI copilots roam your stack through the night — predator-sharp on inbound leads, support tickets, research, and back-office ops.</p>
+            </article>
+            <article class="hero-frame" data-beat="3">
+              <h2 class="hero-title"><span>Workflows</span><span>that flow</span><span>like <em>rivers</em>.</span></h2>
+              <p class="hero-sub">We replace fragile spreadsheets and manual handoffs with streams that bend around obstacles. Observable, versioned, and always finding the sea.</p>
+            </article>
+            <article class="hero-frame" data-beat="4">
+              <h2 class="hero-title"><span>Roots planted</span><span>in <em>fourteen</em></span><span>days.</span></h2>
+              <p class="hero-sub">Audit on Monday, automation taking root by the second Friday. Two-week sprints, weekly demos, zero throwaway code — yours from the first leaf.</p>
+            </article>
+            <article class="hero-frame" data-beat="5">
+              <h2 class="hero-title"><span>Migrations</span><span>measured in</span><span><em>millions</em>.</span></h2>
+              <p class="hero-sub">Tens of millions of records, signals, and tickets — moved like wildebeest across the Serengeti. Predictable. Patient. Unstoppable.</p>
+            </article>
+            <article class="hero-frame" data-beat="6">
+              <h2 class="hero-title"><span>Welcome to</span><span><em>AXION</em>.</span><span>Let nature work.</span></h2>
+              <p class="hero-sub">A thirty-minute call. We'll map the path your business should already be on — wild systems, engineered to last. Free, no pitch.</p>
+            </article>
+          </div>
+
+          <div class="hero-ctas">
+            <a href="contact.html" class="btn btn-primary btn-lg" data-magnetic data-cursor="grow">
+              <span>Start your automation</span>
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5"/></svg>
+            </a>
+            <a href="work.html" class="btn btn-ghost btn-lg" data-magnetic data-cursor="grow">
+              <span>See our work</span>
+            </a>
+          </div>
+
+          <!-- 6-beat progress dots (no dot active on splash overlay) -->
+          <div class="hero-progress" id="heroProgress" aria-hidden="true">
+            <span class="beat-dot"></span>
+            <span class="beat-dot"></span>
+            <span class="beat-dot"></span>
+            <span class="beat-dot"></span>
+            <span class="beat-dot"></span>
+            <span class="beat-dot"></span>
+          </div>
+        </div>
+
+        <!-- Video stage for the rotating robot (decorative) -->
+        <div class="hero-right" aria-hidden="true">
+          <div class="robot-stage" id="robotStage">
+            <video
+              class="robot-video"
+              id="robotVideo"
+              src="videos/robot.mp4"
+              muted
+              playsinline
+              preload="auto"
+              disablepictureinpicture
+              disableremoteplayback
+              aria-label="AXION robot rotating in response to page scroll"
+            ></video>
+            <div class="robot-rings">
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
+              <div class="ring ring-3"></div>
+            </div>
+            <div class="robot-readout">
+              <div class="readout-row"><span>UNIT</span><b>AX-07</b></div>
+              <div class="readout-row"><span>MODE</span><b>autonomous</b></div>
+              <div class="readout-row"><span>SCROLL</span><b id="scrollPct">000%</b></div>
+              <div class="readout-row"><span>TIME</span><b id="videoTime">0.00s</b></div>
+            </div>
+            <div class="robot-tag tag-tl">model.AXION_07 // synced to scroll</div>
+            <div class="robot-tag tag-br">↓ scroll to rotate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="scroll-cue">
+        <div class="scroll-cue-line"></div>
+        <span>scroll to rotate</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- MARQUEE / LOGOS -->
+  <section class="marquee-section">
+    <div class="marquee-label">
+      <span class="dot"></span>
+      Trusted by ops teams at
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>NORTHWIND</span><span>•</span>
+        <span>VERTEX LABS</span><span>•</span>
+        <span>HELIOS</span><span>•</span>
+        <span>ATLAS LOGISTICS</span><span>•</span>
+        <span>MERIDIAN AI</span><span>•</span>
+        <span>NOVA HEALTH</span><span>•</span>
+        <span>PRIME &amp; CO</span><span>•</span>
+        <span>QUANTUM FLOW</span><span>•</span>
+        <!-- duplicate for seamless loop -->
+        <span>NORTHWIND</span><span>•</span>
+        <span>VERTEX LABS</span><span>•</span>
+        <span>HELIOS</span><span>•</span>
+        <span>ATLAS LOGISTICS</span><span>•</span>
+        <span>MERIDIAN AI</span><span>•</span>
+        <span>NOVA HEALTH</span><span>•</span>
+        <span>PRIME &amp; CO</span><span>•</span>
+        <span>QUANTUM FLOW</span><span>•</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services section">
+    <div class="section-head">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">01</span>
+        <span data-ref="services">What we do</span>
+      </div>
+      <h2 class="section-title reveal-mask"><span>Build once.<br/><em>Automate</em> forever.</span></h2>
+      <p class="section-sub reveal">
+        Four practice areas. One mission — make your business compound.
+      </p>
+    </div>
+
+    <div class="service-grid">
+      <article class="service-card reveal" data-cursor="grow">
+        <div class="service-num">01</div>
+        <div class="service-icon">
+          <svg aria-hidden="true" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="24" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="40" cy="32" r="3" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="8" cy="32" r="3" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M24 11v7M21 27l-10 4M27 27l10 4" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h3>AI Agents &amp; Copilots</h3>
+        <p>Custom agents that handle support, sales follow-ups, research, and back-office ops 24/7 — wired to your tools.</p>
+        <div class="service-foot">
+          <span>Learn more</span>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+      </article>
+
+      <article class="service-card reveal" data-cursor="grow">
+        <div class="service-num">02</div>
+        <div class="service-icon">
+          <svg aria-hidden="true" viewBox="0 0 48 48" fill="none">
+            <rect x="6" y="10" width="36" height="28" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M6 18h36M12 26h10M12 30h16M12 34h6" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h3>Workflow Automation</h3>
+        <p>Replace fragile spreadsheets, manual handoffs, and copy-paste hell with reliable, observable pipelines.</p>
+        <div class="service-foot">
+          <span>Learn more</span>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+      </article>
+
+      <article class="service-card reveal" data-cursor="grow">
+        <div class="service-num">03</div>
+        <div class="service-icon">
+          <svg aria-hidden="true" viewBox="0 0 48 48" fill="none">
+            <path d="M8 38V14l16-8 16 8v24" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 38h32M24 6v32M16 22h16M16 30h16" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h3>System Integrations</h3>
+        <p>HubSpot, Salesforce, Slack, Notion, Stripe, your warehouse — all talking to each other, in real time.</p>
+        <div class="service-foot">
+          <span>Learn more</span>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+      </article>
+
+      <article class="service-card reveal" data-cursor="grow">
+        <div class="service-num">04</div>
+        <div class="service-icon">
+          <svg aria-hidden="true" viewBox="0 0 48 48" fill="none">
+            <path d="M24 4l4 14 14 2-10 10 3 14-11-7-11 7 3-14L6 20l14-2 4-14z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Custom AI Products</h3>
+        <p>From internal dashboards to client-facing AI features — we ship production-grade software, not POCs.</p>
+        <div class="service-foot">
+          <span>Learn more</span>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process section">
+    <div class="section-head">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">02</span>
+        <span data-ref="process">How we work</span>
+      </div>
+      <h2 class="section-title reveal-mask"><span>A four-step<br/><em>operating</em> system.</span></h2>
+    </div>
+
+    <ol class="process-list">
+      <li class="process-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Audit</h3>
+          <p>We sit with your team for two weeks, map every workflow, and identify the 20% of automations that drive 80% of the value.</p>
+        </div>
+        <div class="step-line"></div>
+      </li>
+      <li class="process-step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Architect</h3>
+          <p>You get a system diagram, ROI model, and a phased delivery plan. No buzzwords — just a blueprint.</p>
+        </div>
+        <div class="step-line"></div>
+      </li>
+      <li class="process-step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Build</h3>
+          <p>Senior engineers ship in two-week sprints with weekly demos. You own everything we build, day one.</p>
+        </div>
+        <div class="step-line"></div>
+      </li>
+      <li class="process-step reveal">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3><em>Compound</em></h3>
+          <p>Monitoring, iteration, and a 99.9% uptime SLA. Your automations get smarter, not staler.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats section">
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <div class="stat-num" data-count="120">0</div>
+        <div class="stat-suffix">+</div>
+        <div class="stat-label">Automation systems shipped across 11 industries</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num" data-count="38">0</div>
+        <div class="stat-suffix">k</div>
+        <div class="stat-label">Hours of manual work eliminated every month</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num" data-count="4.2">0</div>
+        <div class="stat-suffix">×</div>
+        <div class="stat-label">Average team output multiplier in 90 days</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num" data-count="99.9">0</div>
+        <div class="stat-suffix">%</div>
+        <div class="stat-label">Production uptime backed by our SLA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="cases section">
+    <div class="section-head">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-num">03</span>
+        <span data-ref="case-files">Selected work</span>
+      </div>
+      <h2 class="section-title reveal-mask"><span>Results that<br/><em>compound</em>.</span></h2>
+    </div>
+
+    <div class="case-list">
+      <a href="work.html" class="case-row reveal" data-cursor="grow">
+        <div class="case-meta">
+          <span class="case-tag">SaaS</span>
+          <span class="case-year">2026</span>
+        </div>
+        <h3 class="case-title">Built an AI sales agent that closed 14% of inbound leads autonomously</h3>
+        <div class="case-result">
+          <em>+$2.1M</em>
+          <span>ARR in 6 months</span>
+        </div>
+        <svg aria-hidden="true" class="case-arrow" width="24" height="24" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+
+      <a href="work.html" class="case-row reveal" data-cursor="grow">
+        <div class="case-meta">
+          <span class="case-tag">Logistics</span>
+          <span class="case-year">2026</span>
+        </div>
+        <h3 class="case-title">Replaced 9 ops people with one orchestration system across 23 warehouses</h3>
+        <div class="case-result">
+          <em>−72%</em>
+          <span>operating cost</span>
+        </div>
+        <svg aria-hidden="true" class="case-arrow" width="24" height="24" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+
+      <a href="work.html" class="case-row reveal" data-cursor="grow">
+        <div class="case-meta">
+          <span class="case-tag">Healthcare</span>
+          <span class="case-year">2025</span>
+        </div>
+        <h3 class="case-title">HIPAA-grade intake assistant handling 14,000 patient conversations / week</h3>
+        <div class="case-result">
+          <em>−83%</em>
+          <span>front-desk load</span>
+        </div>
+        <svg aria-hidden="true" class="case-arrow" width="24" height="24" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial section">
+    <div class="quote reveal">
+      <div class="quote-mark">"</div>
+      <p>
+        AXION shipped in three weeks what our internal team couldn't deliver
+        in nine months. The system is now handling 60% of our inbound — and
+        the customers think they're talking to humans.
+      </p>
+      <div class="quote-author">
+        <div class="quote-avatar">EM</div>
+        <div>
+          <strong>Elena Marchetti</strong>
+          <span>VP Operations, Vertex Labs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner reveal">
+      <h2 class="cta-title">
+        Ready to <em>compound</em><br/>your output?
+      </h2>
+      <p>A 30-minute call. We'll map the highest-leverage automation in your business — free, no pitch.</p>
+      <a href="contact.html" class="btn btn-primary btn-xl" data-magnetic data-cursor="grow">
+        <span>Book your strategy call</span>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+      <div class="cta-meta">
+        <span><span class="cta-dot"></span> Avg. response &lt; 4 hours</span>
+        <span><span class="cta-dot"></span> US &amp; EU coverage</span>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo logo-lg">
+          <span class="logo-mark"></span>
+          <span class="logo-text">AXION</span>
+        </a>
+        <p>Automation, engineered for the next era.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <a href="#">Home</a>
+          <a href="services.html">Services</a>
+          <a href="work.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="services.html">AI Agents</a>
+          <a href="services.html">Workflow Automation</a>
+          <a href="services.html">Integrations</a>
+          <a href="services.html">Custom AI Products</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:hello@axion.ai">hello@axion.ai</a>
+          <a href="#">San Francisco · Amsterdam</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AXION Automation Inc.</span>
+      <span class="footer-id">v1.0 · build 2026.06</span>
+    </div>
+  </footer>
+
+  <!-- Scroll-synced robot turntable (10-frame sequence) -->
+  <script src="js/robot.js?v=20260621a"></script>
+  <script src="js/main.js?v=20260621a"></script>
+</body>
+</html>
